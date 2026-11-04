@@ -6,10 +6,9 @@
  * 2. 包起來的網址之間用逗號分隔
  */
 
-
 const urls = [
-	'https://v.wjx.cn/vm/QVdlhjP.aspx',
-	'https://v.wjx.cn/vm/wBOBeTm.aspx',
-	'https://v.wjx.cn/vm/waC3Bel.aspx',
-	'https://v.wjx.cn/vm/hYY6va8.aspx',
+    'https://v.wjx.cn/vm/hjAO6XR.aspx',
+    'https://v.wjx.cn/vm/Q4x9wGh.aspx',
+    'https://v.wjx.cn/vm/mPAS4iC.aspx',
+    'https://v.wjx.cn/vm/rXOI7EG.aspx',
 ];
