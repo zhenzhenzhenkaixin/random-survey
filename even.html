@@ -21,7 +21,8 @@ fetch("https://abacus.jasoncameron.dev/hit/zhenzhenzhenkaixin.github.io/pretest-
 .then(function(d){
 if(done) return; done = true; clearTimeout(timer);
 var v = (typeof d.value === "number") ? d.value : 0;
-if(v > 0){ go((v - 1) % 4); } else { go(Math.floor(Math.random()*4)); }
+// A1 catch-up window: n=30-33 -> A1; n>33 resume round-robin
+  if(v > 29 && v <= 33){ go(0); } else if(v > 0){ go((v - 1) % 4); } else { go(Math.floor(Math.random()*4)); }
 })
 .catch(function(){ if(!done){ done = true; clearTimeout(timer); go(Math.floor(Math.random()*4)); } });
 </script>
