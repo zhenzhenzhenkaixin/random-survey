@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>正在为您打开问卷，请稍候……</title>
+</head>
+<body>
+正在为您打开问卷，请稍候……
+<script>
+var urls = [
+"https://v.wjx.cn/vm/QmTdhug.aspx",
+"https://v.wjx.cn/vm/wLDDZ1B.aspx",
+"https://v.wjx.cn/vm/wLDt1BD.aspx",
+"https://v.wjx.cn/vm/ha6BB1x.aspx"
+];
+function go(i){ window.location.replace(urls[i]); }
+var done = false;
+var timer = setTimeout(function(){ if(!done){ done = true; go(Math.floor(Math.random()*4)); } }, 3000);
+fetch("https://abacus.jasoncameron.dev/hit/zhenzhenzhenkaixin.github.io/retest-assign")
+.then(function(r){ return r.json(); })
+.then(function(d){
+if(done) return; done = true; clearTimeout(timer);
+var v = (typeof d.value === "number") ? d.value : 0;
+if(v > 0){ go((v - 1) % 4); } else { go(Math.floor(Math.random()*4)); }
+})
+.catch(function(){ if(!done){ done = true; clearTimeout(timer); go(Math.floor(Math.random()*4)); } });
+</script>
+</body>
+</html>
