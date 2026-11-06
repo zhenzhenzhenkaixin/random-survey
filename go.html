@@ -10,7 +10,20 @@ var urls = [
 'https://v.wjx.cn/vm/hLD6GID.aspx',
 'https://v.wjx.cn/vm/YDRon9l.aspx'
 ];
-window.location.replace(urls[Math.floor(Math.random()*urls.length)]);
+var cfg = {mode: 'rotate'};
+function go(i) { window.location.replace(urls[i]); }
+function rand() { go(Math.floor(Math.random() * urls.length)); }
+fetch('https://zhenzhenzhenkaixin.github.io/random-survey/assign.json?t=' + Date.now(), {cache: 'no-store'}).then(function (r) { return r.json(); }).then(function (c) { cfg = c; }).catch(function () {}).then(function () {
+  var ctl = new AbortController();
+  var to = setTimeout(function () { ctl.abort(); }, 3000);
+  fetch('https://abacus.jasoncameron.dev/hit/zhenzhenzhenkaixin.github.io/formal-assign', {signal: ctl.signal}).then(function (r) { return r.json(); }).then(function (d) {
+    clearTimeout(to);
+    var v = d.value;
+    if (typeof v !== 'number') { rand(); return; }
+    if (cfg.mode === 'boost' && cfg.target >= 0 && cfg.target <= 3 && v <= cfg.until) { go(cfg.target); }
+    else { go((v - 1) % 4); }
+  }).catch(function () { clearTimeout(to); rand(); });
+});
 </script>
 </head>
 <body><p>正在为您打开问卷，请稍候...</p></body>
